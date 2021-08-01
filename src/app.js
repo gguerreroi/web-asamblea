@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 app.set('views', join(__dirname, '/Views'));
 
 //Middlewares
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(urlencoded({extended: true}));
 app.use(json());
 app.use(session({

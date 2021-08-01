@@ -11,14 +11,14 @@ passport.use('local.signin', new LocalStrategy({
     passReqToCallback: true
 }, async (request, username, password, done) => {
 
-    const URL = `${app.locals.UrlApi}/asociados/login`
+    const URL = `http://localhost:3000/asociados/login`
 
-    await axios.get(URL,{
-        auth: {
-            username: username,
-            password: password
+    await axios.get(URL, {
+        data: {
+            cui: username,
+            cuenta: password
         }
-    }).then(function(response){
+    }).then(function (response) {
         const {state, data} = response.data;
         const {Code, Message} = state;
 
@@ -26,18 +26,18 @@ passport.use('local.signin', new LocalStrategy({
         request.session.InfoUser = data;
 
         return done(null, data, request.flash('success', data.Token))
-    }).catch(function(error){
+    }).catch(function (error) {
         console.log("error", error)
         return done(null, null, request.flash('message', 'El usuario o contraseña no es Correcto'));
     })
 }));
 
-passport.serializeUser(function(user, done){
+passport.serializeUser(function (user, done) {
     // console.log("serializeUser", user);
     done(null, user);
 })
 
-passport.deserializeUser(async function(request, User, done){
+passport.deserializeUser(async function (request, User, done) {
     // console.log("deserializeUser", User)
 
     // const {CodCliente, Token} = User;
