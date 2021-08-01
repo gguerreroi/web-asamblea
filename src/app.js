@@ -2,7 +2,6 @@
 
 import express, {urlencoded, json} from 'express';
 import morgan from 'morgan'
-import r from './routes/routes'
 import defaults from './middlewares/defaultValues'
 import routes from "./routes/routes";
 const session = require('express-session');
@@ -10,14 +9,14 @@ const flash = require('connect-flash');
 const {join} = require('path');
 const favicon = require('serve-favicon');
 
-const sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 const passport = require('passport');
 
 const app = express();
 
 // initalize sequelize with session store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-require('./Passport');
+require('./middlewares/passport');
 
 let sequelize = new Sequelize({
     dialect: 'mssql',
@@ -33,7 +32,7 @@ app.set('view engine', 'ejs');
 app.set('views', join(__dirname, '/Views'));
 
 //Middlewares
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 app.use(urlencoded({extended: true}));
 app.use(json());
 app.use(session({
@@ -65,13 +64,13 @@ app.use(express.static(join(__dirname, '/Public')));
 
 //404 cuando no encuentra ninguna de las rutas anteriores
 app.use(function (req, res, next) {
-    res.status(404).render('./System/Error404');
+    res.status(404).render('./system/error404');
 });
 
 //Cuando se produce algun error
 app.use(function (req, res, next) {
 
-    res.status(500).render('./System/Error500');
+    res.status(500).render('./system/error500');
 });
 
 
