@@ -60,7 +60,7 @@ app.use((req, res, next) => {
 app.use('/', routes)
 
 //static files
-app.use(express.static(join(__dirname, '/Public')));
+app.use(express.static(join(__dirname, '/public')));
 
 //404 cuando no encuentra ninguna de las rutas anteriores
 app.use(function (req, res, next) {
