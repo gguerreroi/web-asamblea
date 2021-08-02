@@ -19,4 +19,7 @@ r.get('/logout', [], login.logout)
 
 r.get('/admin/Auth', [],  admin.login)
 r.get('/admin/', [], admin.main)
+r.get('/admin/votaciones', [], admin.votaciones)
+r.get('/admin/asistencia', [], admin.asistencia)
+
 export default r

@@ -9,3 +9,7 @@ export const main = (request, response) => {
 export const votaciones = (request, response) => {
     response.render('./administrador/votaciones')
 }
+
+export const asistencia = (request, response) => {
+    response.render('./administrador/asistencia')
+}
