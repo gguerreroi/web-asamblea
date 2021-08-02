@@ -21,5 +21,6 @@ r.get('/admin/Auth', [],  admin.login)
 r.get('/admin/', [], admin.main)
 r.get('/admin/votaciones', [], admin.votaciones)
 r.get('/admin/asistencia', [], admin.asistencia)
+r.get('/admin/sexo', [], admin.sexo)
 
 export default r

@@ -13,3 +13,8 @@ export const votaciones = (request, response) => {
 export const asistencia = (request, response) => {
     response.render('./administrador/asistencia')
 }
+
+export const sexo = (request, response) => {
+    response.render('./administrador/sexo')
+}
+
