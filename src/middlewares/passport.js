@@ -32,6 +32,33 @@ passport.use('local.signin', new LocalStrategy({
     })
 }));
 
+passport.use('user-local', new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (request, username, password, done) => {
+
+    const URL = `http://localhost:3000/admin/login`
+
+    await axios.get(URL, {
+        data: {
+            StrUsuario: username,
+            StrClave: password
+        }
+    }).then(function (response) {
+        const {state, data} = response.data;
+        const {Code, Message} = state;
+
+        console.log(Code, Message);
+        request.session.InfoUser = data;
+
+        return done(null, data, request.flash('success', data.Token))
+    }).catch(function (error) {
+        console.log("error", error)
+        return done(null, null, request.flash('message', 'El usuario o contraseña no es Correcto'));
+    })
+}));
+
 passport.serializeUser(function (user, done) {
     // console.log("serializeUser", user);
     done(null, user);
