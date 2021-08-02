@@ -11,4 +11,5 @@ r.get("/Auth", check.isAuthLogin, controller.AuthView);
 
 r.post('/Auth', [], login.checkLogin)
 
+r.get('/logout', [], login.logout)
 export default r

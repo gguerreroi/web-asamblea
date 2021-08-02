@@ -7,3 +7,9 @@ export const checkLogin = (request, response, next) => {
         failureFlash: true
     })(request, response, next);
 }
+
+export const logout = (request, response, next) => {
+    request.session.destroy();
+    request.logOut();
+    response.redirect('/Auth');
+}

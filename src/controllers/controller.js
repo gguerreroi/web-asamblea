@@ -4,5 +4,6 @@ export const AuthView = (request, response) => {
 }
 
 export const MainAsociados = (request, response) => {
-    response.render('./asociados/main')
+
+    response.render('./asociados/main',{user: request.session.InfoUser})
 }

@@ -18,13 +18,48 @@
         <div class="text-center">
             <h1 class="text-4xl text-blue-900 font-bold">XX Asamblea </h1>
             <p class="text-base font-semibold text-green-600 ">Cooperativa Coosanjer 2021</p>
-            <p class="text-base text-left"> Bienvenido(a): <b>ASOCIADO</b> </p>
-            <p class="text-base text-left"> Cuenta Aportación: <b>CUENTA</b> </p>
+            <p class="text-base text-left"> Bienvenido(a): <b><%- user.StrNombreAsociado %></b></p>
+            <p class="text-base text-left"> Cuenta Aportación: <b><%- user.NumCuenta %></b></p>
         </div>
     </div>
-    <div id="Votaciones">
+
+    <div class="flex justify-center items-center w-screen content-evenly p-4 ">
+        <div class="bg-white p-2 h-60 shadow-lg votation-empty hidden">
+            <h4 class="text-gray-700 text-base text-center p-2 font-semibold">
+                No hay votaciones disponibles en este momento
+            </h4>
+        </div>
+
+        <div class="bg-white p-2 h-full shadow-lg ">
+            <div class="p-2">
+                <form name="" class="votar">
+                    <h2 class="text-3xl text-blue-900 font-bold">Eleccion de Directivos para el periodo 2021-2022</h2>
+                    <div class="container mx-auto">
+                        <div class="flex flex-wrap -mx-4">
+
+                        </div>
+                    </div>
+                    <input type="number" name="codvotacion" value="" required>
+                    <input type="number" name="codoption" value="" required>
+                    <button class="w-full py-2 rounded-full bg-green-600 text-gray-100  focus:outline-none">VOTAR
+                    </button>
+                </form>
+            </div>
+        </div>
+
 
     </div>
 </div>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<script>
+    "use strict"
+    $(".votar").submit(e => {
+        e.preventDefault()
+
+    })
+</script>
 </body>
 </html>
