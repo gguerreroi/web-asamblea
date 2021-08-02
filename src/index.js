@@ -1,5 +1,5 @@
 import "@babel/polyfill"
-import app from './App'
+import app from './app'
 
 async function main() {
     await app.listen(app.get('port'));
