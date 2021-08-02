@@ -159,20 +159,20 @@ onclick="EmitirVoto('${Info.CodVotacion}', '${Info.CodOpcion}', '${Info.StrDescr
                     const huella = data[0].Huella
                     console.log("data", huella)
                     if (state.Code == "1") {
-                        // $.ajax({
-                        //     url: 'http://servicio.smsmasivos.com.ar/enviar_sms_bloque.asp',
-                        //     method: 'POST',
-                        //     timeout:0,
-                        //     headers: {
-                        //         "Content-Type": "application/x-www-form-urlencoded"
-                        //     },
-                        //     data: {
-                        //         USUARIO: "SMSDEMOGTC116072",
-                        //         CLAVE: "SMSDEMOGTC116072214",
-                        //         SEPARADORCAMPOS: ",",
-                        //         BLOQUE: `${codcliente},${numtelefono},Voto Emitido con exito. La huella de seguridad es: ${huella}`
-                        //     }
-                        // })
+                        $.ajax({
+                            url: 'http://servicio.smsmasivos.com.ar/enviar_sms_bloque.asp',
+                            method: 'POST',
+                            timeout:0,
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            data: {
+                                USUARIO: "SMSDEMOGTC116072",
+                                CLAVE: "SMSDEMOGTC116072214",
+                                SEPARADORCAMPOS: ",",
+                                BLOQUE: `${codcliente},${numtelefono},Voto Emitido con exito. La huella de seguridad es: ${huella}`
+                            }
+                        })
                         swal("Sufragio Registrado", "Sufragio emitido correctamente", "success").then(() => {
                             window.location.reload();
                         })
