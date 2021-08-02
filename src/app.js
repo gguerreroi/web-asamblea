@@ -29,7 +29,7 @@ let sequelize = new Sequelize({
 //Configuraciones
 app.set('port', process.env.PORT || 4000);
 app.set('view engine', 'ejs');
-app.set('views', join(__dirname, '/Views'));
+app.set('views', join(__dirname, '/views'));
 
 //Middlewares
 app.use(morgan('combined'));
