@@ -3,8 +3,8 @@ import * as controller from '../controllers/controller'
 import * as check from "../middlewares/islogged";
 import * as login from '../controllers/login.controller'
 import * as admin from '../controllers/admin.controllerr'
-import {Authview, checkLogin} from "../controllers/admin.controllerr";
-import {isAuthLoginAdmin} from "../middlewares/islogged";
+
+
 const r = Router();
 
 r.get('/', check.isAuth, controller.MainAsociados);

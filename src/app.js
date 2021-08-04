@@ -2,29 +2,26 @@
 
 import express, {urlencoded, json} from 'express';
 import morgan from 'morgan'
-import defaults from './middlewares/defaultValues'
+import defaults from './config/config'
 import routes from "./routes/routes";
+import * as db from "./middlewares/dbconnection"
+
+
 const session = require('express-session');
-const flash = require('connect-flash');
+
 const {join} = require('path');
 const favicon = require('serve-favicon');
 
-const Sequelize = require('sequelize');
+
 const passport = require('passport');
+
+require('./middlewares/passport')
 
 const app = express();
 
 // initalize sequelize with session store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-require('./middlewares/passport');
 
-let sequelize = new Sequelize({
-    dialect: 'mssql',
-    host: '45.5.118.219',
-    username: 'inab_session',
-    password: 'inab_session',
-    database: 'INAB001'
-});
 
 //Configuraciones
 app.set('port', process.env.PORT || 4000);
@@ -40,11 +37,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new SequelizeStore({
-        db: sequelize
+        db: db.dbConnection
     })
 }));
 
-app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 

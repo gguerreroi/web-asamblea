@@ -1,11 +1,9 @@
-import app from "../app"
-
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passportLocal = require('passport-local').Strategy;
 
 const axios = require('axios');
 
-passport.use('local.signin', new LocalStrategy({
+passport.use('local.signin', new passportLocal({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
@@ -25,14 +23,14 @@ passport.use('local.signin', new LocalStrategy({
         console.log(Code, Message);
         request.session.InfoUser = data;
 
-        return done(null, data, request.flash('success', data.Token))
+        return done(null, data)
     }).catch(function (error) {
         console.log("error", error)
-        return done(null, null, request.flash('message', 'El usuario o contraseña no es Correcto'));
+        return done(null, null);
     })
 }));
 
-passport.use('user-local', new LocalStrategy({
+passport.use('user-local', new passportLocal({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
@@ -52,15 +50,15 @@ passport.use('user-local', new LocalStrategy({
         console.log(Code, Message);
         request.session.InfoUser = data;
 
-        return done(null, data, request.flash('success', data.Token))
+        return done(null, data)
     }).catch(function (error) {
         console.log("error", error)
-        return done(null, null, request.flash('message', 'El usuario o contraseña no es Correcto'));
+        return done(null, null);
     })
 }));
 
 passport.serializeUser(function (user, done) {
-    // console.log("serializeUser", user);
+
     done(null, user);
 })
 
