@@ -68,7 +68,7 @@
 </style>
 <body class="bg-gray-300" style="font-family: Roboto;">
 <div class="h-screen flex justify-center items-center">
-    <div class="bg-white rounded-lg w-full p-8 md:w-2/5 md:px-16 md:py-16 sm:w-2/5 sm:px-16 sm:py-16">
+    <div class="bg-white rounded-lg w-full p-8 md:w-3/5 md:px-16 md:py-16 sm:w-2/5 ">
         <form method="post" action="/Auth">
             <div class="flex font-bold justify-center">
                 <img class="h-20 w-30"
@@ -118,10 +118,15 @@
         src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
+<script src="https://unpkg.com/imask"></script>
 <script>
     const inputs = document.querySelectorAll("input");
 
+    const username = document.getElementsByName('username')[0];
+    const maskUsername = IMask(username, {mask: '0000000000000'})
 
+    const password = document.getElementsByName('password')[0];
+    const maskPassword = IMask(password, {mask: '0000000000'})
     function addcl() {
         let parent = this.parentNode.parentNode;
         parent.classList.add("focus");
