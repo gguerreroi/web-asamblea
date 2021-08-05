@@ -1,6 +1,6 @@
 const passport = require('passport');
 const passportLocal = require('passport-local').Strategy;
-
+import config from '../config/config'
 const axios = require('axios');
 
 passport.use('local.signin', new passportLocal({
@@ -9,7 +9,7 @@ passport.use('local.signin', new passportLocal({
     passReqToCallback: true
 }, async (request, username, password, done) => {
 
-    const URL = `http://localhost:3000/asociados/login`
+    const URL = `${config.URL_API}/asociados/login`
 
     await axios.get(URL, {
         data: {
@@ -36,7 +36,7 @@ passport.use('user-local', new passportLocal({
     passReqToCallback: true
 }, async (request, username, password, done) => {
 
-    const URL = `http://localhost:3000/admin/login`
+    const URL = `${config.URL_API}/admin/login`
 
     await axios.get(URL, {
         data: {

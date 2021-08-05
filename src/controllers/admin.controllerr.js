@@ -2,8 +2,12 @@ import passport from "passport";
 import config from '../config/config'
 import axios from "axios";
 
+let options = {
+    title: `${config.APP_TITLE}`,
+    subtitle: `${config.APP_SUBTITLE}`
+}
 export const Authview = (request, response) => {
-    response.render('./administrador/login')
+    response.render('./administrador/login', options)
 }
 export const checkLogin = (request, response, next) => {
     passport.authenticate('user-local', {

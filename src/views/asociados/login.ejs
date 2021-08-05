@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Asamblea</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -41,7 +40,7 @@
         bottom: -2px;
         width: 0%;
         height: 2px;
-        background-color: #38d39f;
+        background-color: #048a04;
         transition: .4s;
     }
 
@@ -75,9 +74,8 @@
                 <img class="h-20 w-30"
                      src="./images/logo-micoope.png">
             </div>
-            <h2 class="text-3xl text-center text-blue-900 "><b>XX ASAMBLEA</b></h2>
-
-                <p class="text-center text-green-600 uppercase">Coosanjer es Micoope</p>
+            <h2 class="text-3xl text-center text-blue-900 "><b><%- title %></b></h2>
+            <p class="text-center text-green-600 uppercase"><%- subtitle %></p>
 
             <div class="input-div border-b-2 relative grid my-5 py-1 focus:outline-none"
                  style="grid-template-columns: 7% 93%;">
@@ -88,7 +86,8 @@
                     <h5>DPI</h5>
                     <input type="number" class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
                            name="username"
-                           style="background:none;" required>
+                           autocomplete="off"
+                           required>
                 </div>
             </div>
             <div class="input-div border-b-2 relative grid my-5 py-1 focus:outline-none"
@@ -101,11 +100,13 @@
                     <input type="number"
                            class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
                            name="password"
-                           style="background:none;" required>
+                           autocomplete="off"
+                           required>
                 </div>
             </div>
             <button type="submit"
-                    class="w-full py-2 rounded-full bg-green-600 text-gray-100  focus:outline-none">Entrar
+                    class="w-full py-2 rounded-full bg-green-600 text-gray-100  focus:outline-none hover:bg-green-700">
+                Entrar
             </button>
         </form>
     </div>
