@@ -17,11 +17,13 @@ export const checkLogin = (request, response, next) => {
     })(request, response, next);
 }
 export const main = (request, response) => {
-    response.render('./administrador/main')
+    options.path = request.route.path
+    response.render('./administrador/main', options)
 }
 
 export const votaciones = (request, response) => {
-    response.render('./administrador/votaciones')
+    options.path = request.route.path
+    response.render('./administrador/votaciones', options)
 }
 
 export const asistencia = (request, response) => {
@@ -41,9 +43,11 @@ export const asistencia = (request, response) => {
 }
 
 export const sexo = (request, response) => {
-    response.render('./administrador/sexo')
+    options.path = request.route.path
+    response.render('./administrador/sexo', options)
 }
 
 export const resultado = (request, response) => {
-    response.render('./administrador/resultados')
+    options.path = request.route.path
+    response.render('./administrador/resultados', options)
 }
