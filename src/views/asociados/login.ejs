@@ -68,13 +68,13 @@
 </style>
 <body class="bg-gray-300" style="font-family: Roboto;">
 <div class="h-screen flex justify-center items-center">
-    <div class="bg-white rounded-lg w-2/5 px-16 py-16">
+    <div class="bg-white rounded-lg w-full p-8 md:w-2/5 md:px-16 md:py-16 sm:w-2/5 sm:px-16 sm:py-16">
         <form method="post" action="/Auth">
             <div class="flex font-bold justify-center">
                 <img class="h-20 w-30"
                      src="./images/logo-micoope.png">
             </div>
-            <h2 class="text-3xl text-center text-blue-900 "><b><%- title %></b></h2>
+            <h2 class="md:text-3xl sm:text-2xl text-center text-blue-900 "><b><%- title %></b></h2>
             <p class="text-center text-green-600 uppercase"><%- subtitle %></p>
 
             <div class="input-div border-b-2 relative grid my-5 py-1 focus:outline-none"
@@ -87,6 +87,7 @@
                     <input type="number" class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
                            name="username"
                            autocomplete="off"
+                           style="background: none;"
                            required>
                 </div>
             </div>
@@ -101,6 +102,7 @@
                            class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
                            name="password"
                            autocomplete="off"
+                           style="background: none;"
                            required>
                 </div>
             </div>
