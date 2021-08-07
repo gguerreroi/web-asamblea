@@ -14,33 +14,34 @@
 <%- include('../partials/header.ejs') %>
 <br>
 
-    <div class="flex w-screen justify-center items-center">
-        <div class="bg-white w-5/6 m-4 py-8 px-4 rounded-lg shadow-lg">
-            <button class="float-right text-white bg-blue-600 hover:bg-blue-700 rounded-full h-8 w-8 items-center justify-center focus:outline-none">
-                <i class="fas fa-plus"></i>
-            </button>
-            <br>
-            <br>
-            <table class="table-auto " id="tbvotaciones" width="100%">
-                <caption class="text-2xl font-semibold p-2">Control de Votaciones</caption>
-                <thead>
-                <tr class="bg-blue-900 text-white">
-                    <td class="p-2">#</td>
-                    <td>Titulo</td>
-                    <td>Descripción</td>
-                    <td>Fecha/Hora Inicio</td>
-                    <td>Imagen</td>
-                    <td>Link</td>
-                    <td>Fecha/Hora Fin</td>
-                    <td>Estado</td>
-                    <td class="">Operaciones</td>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+<div class="flex w-screen justify-center items-center">
+    <div class="bg-white w-5/6 m-4 py-8 px-4 rounded-lg shadow-lg">
+        <button class="float-right text-white bg-blue-600 hover:bg-blue-700 rounded-full h-8 w-8 items-center justify-center focus:outline-none">
+            <i class="fas fa-plus"></i>
+        </button>
+        <br>
+        <br>
+        <table class="table-auto " id="tbvotaciones" width="100%">
+            <caption class="text-2xl font-semibold p-2">Control de Votaciones</caption>
+            <thead>
+            <tr class="bg-blue-900 text-white">
+                <td class="p-2">#</td>
+                <td>Titulo</td>
+                <td>Descripción</td>
+                <td>Fecha/Hora Inicio</td>
+                <td>Imagen</td>
+                <td>Link</td>
+                <td>Fecha/Hora Fin</td>
+                <td>Estado</td>
+                <td class="">Operaciones</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
+</div>
+
 
 <%- include('../partials/common.ejs'); -%>
 <script
@@ -49,6 +50,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
     let tbvotaciones;
 
