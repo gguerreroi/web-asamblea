@@ -27,10 +27,7 @@ export const votaciones = (request, response) => {
 }
 
 export const asistencia = (request, response) => {
-    const options = {
-        app_title: config.app_title,
-        app_subtitle: config.app_subtitle
-    }
+    options.path = request.route.path
     response.render('./administrador/asistencia', options)
     // axios({
     //     url: ``,
