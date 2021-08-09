@@ -27,19 +27,20 @@ export const votaciones = (request, response) => {
 }
 
 export const asistencia = (request, response) => {
-    axios({
-        url: ``,
-        method: 'GET',
-
-    }).then(data => {
-        const options = {
-            app_title: config.app_title,
-            app_subtitle: config.app_subtitle
-        }
-        response.render('./administrador/asistencia', options)
-    }).catch(reason => {
-
-    })
+    const options = {
+        app_title: config.app_title,
+        app_subtitle: config.app_subtitle
+    }
+    response.render('./administrador/asistencia', options)
+    // axios({
+    //     url: ``,
+    //     method: 'GET',
+    //
+    // }).then(data => {
+    //
+    // }).catch(reason => {
+    //
+    // })
 }
 
 export const sexo = (request, response) => {

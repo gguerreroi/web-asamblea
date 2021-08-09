@@ -8,15 +8,29 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <style>
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: visible !important;
+        }
+
+    </style>
     <title>Administrador</title>
 </head>
-<body class="bg-gray-300" style="font-family: Roboto;">
+<body class="bg-gray-300"
+      style="font-family: Roboto;"
+      x-data="{ 'showModal': false }"
+      @keydown.escape="showModal = false"
+      x-cloak>
 <%- include('../partials/header.ejs') %>
 <br>
 
 <div class="flex w-screen justify-center items-center">
     <div class="bg-white w-5/6 m-4 py-8 px-4 rounded-lg shadow-lg">
-        <button class="float-right text-white bg-blue-600 hover:bg-blue-700 rounded-full h-8 w-8 items-center justify-center focus:outline-none">
+        <button class="modal-open float-right text-white bg-blue-600 hover:bg-blue-700 rounded-full h-8 w-8 items-center justify-center focus:outline-none">
             <i class="fas fa-plus"></i>
         </button>
         <br>
@@ -42,7 +56,7 @@
     </div>
 </div>
 
-
+<%- include('../partials/modalVotaciones.ejs'); -%>
 <%- include('../partials/common.ejs'); -%>
 <script
         src="https://code.jquery.com/jquery-3.6.0.js"
@@ -50,7 +64,6 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
     let tbvotaciones;
 
@@ -70,6 +83,45 @@
     function showResultados(codvotacion) {
 
     }
+
+    var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener('click', function(event){
+            event.preventDefault()
+            toggleModal()
+        })
+    }
+
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener('click', toggleModal)
+    }
+
+    document.onkeydown = function(evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+            isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-active')) {
+            toggleModal()
+        }
+    };
+
+
+    function toggleModal () {
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modal')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
+    }
+
 
     $(document).ready(function () {
 
