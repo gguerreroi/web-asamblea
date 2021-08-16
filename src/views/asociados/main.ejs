@@ -62,7 +62,6 @@
 <script>
     "use strict"
 
-
     $(".votar").submit(e => {
         e.preventDefault()
         console.log("votar")
@@ -70,6 +69,25 @@
 
     $(document).ready(function () {
         const codcliente = $("#codcliente").val()
+        let flgrefresh=1;
+        setInterval(function(){
+            $.ajax({
+                url: `${URL_API}/asociados/votaciones/${codcliente}`,
+                method: "get",
+                timeout: 0
+            }).then(res => {
+                console.log(res)
+                const {data} = res;
+                console.log("conteo",data.length)
+
+                if (data.length > 0){
+
+                }
+
+
+            });
+        }, 2000)
+
         $.ajax({
             url: `${URL_API}/asociados/votaciones/${codcliente}`,
             method: 'GET',
