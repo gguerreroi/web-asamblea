@@ -72,12 +72,60 @@
     }
 
     function startVotacion(codvotacion) {
-
+        swal({
+            title: "Votaciones",
+            text: "Esta a punto de iniciar una votacion, esta seguro?",
+            icon: 'warning',
+            dangerMode: true,
+            buttons: {
+                cancel: "Cancelar",
+                delete: "Iniciar"
+            }
+        }).then(function(resp){
+            if (resp){
+                $.ajax({
+                    url: `${URL_API}/votaciones/${codvotacion}`,
+                    method: 'post'
+                }).then(resvo => {
+                    console.log(resvo)
+                    swal({
+                        title: 'Votaciones',
+                        text: 'Votacion iniciada con exito',
+                        icon: 'success'
+                    })
+                    tbvotaciones.ajax.reload(null, false)
+                })
+            }
+        })
 
     }
 
     function stopVotacion(codvotacion) {
-
+        swal({
+            title: "Votaciones",
+            text: "Esta a punto de iniciar una votacion, esta seguro?",
+            icon: 'warning',
+            dangerMode: true,
+            buttons: {
+                cancel: "Cancelar",
+                delete: "Detener"
+            }
+        }).then(function(resp){
+            if (resp){
+                $.ajax({
+                    url: `${URL_API}/votaciones/${codvotacion}`,
+                    method: 'put'
+                }).then(resvo => {
+                    console.log(resvo)
+                    swal({
+                        title: 'Votaciones',
+                        text: 'Se ha detenido la votacion',
+                        icon: 'success'
+                    })
+                    tbvotaciones.ajax.reload(null, false)
+                })
+            }
+        })
     }
 
     function showResultados(codvotacion) {
@@ -169,7 +217,13 @@
                     targets: [7],
                     render: function (data, type, row) {
                         let str = '';
-                        str += `<span class="flex text-center rounded-lg bg-green-400 bg-opacity-50 text-green-900 p-1">En Curso</span>`
+                        if (data === 'E')
+                            str += `<span class="flex text-center rounded-lg bg-green-400 bg-opacity-50 text-green-900 p-1">En Curso</span>`
+                        if (data === 'F')
+                            str += `<span class="flex text-center rounded-lg bg-red-400 bg-opacity-50 text-red-900 p-1">Finalizada</span>`
+                        if (data === 'B')
+                            str += `<span class="flex text-center rounded-lg bg-orange-400 bg-opacity-50 text-orange-900 p-1">Borrador</span>`
+
                         return str;
                     }
                 }, {
