@@ -120,6 +120,8 @@
                 <img class="h-30 w-40 "
                      src="./images/logo-micoope.png">
             </div>
+            <h2 class="md:text-3xl sm:text-2xl text-center text-blue-900 "><b><%- title %></b></h2>
+            <p class="text-center text-green-600 uppercase"><%- subtitle %></p>
             <h1 class="text-3xl text-center mb-3 font-extralight">La asamblea inicia en </h1>
             <div class="text-6xl text-center flex w-full items-center justify-center">
                 <div class="text-2xl mr-1 font-extralight"></div>
@@ -160,7 +162,7 @@
             days: '00',
             distance: 0,
             countdown: null,
-            beerTime: new Date('Aug 16, 2021 15:30:00').getTime(),
+            beerTime: new Date('Aug 17, 2021 15:30:00').getTime(),
             now: new Date().getTime(),
             start: function() {
                 this.countdown = setInterval(() => {
