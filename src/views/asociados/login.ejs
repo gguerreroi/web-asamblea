@@ -162,7 +162,7 @@
             days: '00',
             distance: 0,
             countdown: null,
-            beerTime: new Date('Aug 17, 2021 15:30:00').getTime(),
+            beerTime: new Date('Aug 17, 2021 10:16:00').getTime(),
             now: new Date().getTime(),
             start: function() {
                 this.countdown = setInterval(() => {
@@ -181,8 +181,10 @@
                         this.hours = '00';
                         this.minutes = '00';
                         this.seconds = '00';
-                        $("#countdown").fadeOut();
-                        $("#flogin").show();
+                        $("#countdown").fadeOut('fast','swing',function(){
+                            $("#flogin").fadeIn();
+                        });
+
                     }
                 },100);
             },
