@@ -34,18 +34,23 @@
         </div>
     </div>
 
+    <div class="flex justify-center items-center w-screen content-evenly p-4 ">
+
+
+        <a class="rounded-lg" href="https://us02web.zoom.us/j/82644407649?pwd=Yk42ZURJbUFLeFpnKzY0ZVdSVGJxZz09">
+            <div class="flex bg-white p-2 h-60 w-full shadow-lg ">
+                <img src="https://img.icons8.com/color/144/000000/zoom.png" class="float-left w-32 p-2">
+                <h4 class="text-gray-700 text-base text-center p-2 font-semibold self-center  ">
+                    Ingresar a la Asamblea
+                </h4>
+            </div>
+        </a>
+    </div>
+
     <div class="flex justify-center items-center w-screen content-evenly p-4 " id="desk">
         <div class="bg-white p-2 h-60 shadow-lg votation-empty hidden">
             <h4 class="text-gray-700 text-base text-center p-2 font-semibold">
                 No hay votaciones disponibles en este momento
-            </h4>
-        </div>
-        <div class="bg-white p-2 h-60 shadow-lg ">
-            <h4 class="text-gray-700 text-base text-center p-2 font-semibold">
-
-                <a class="rounded-lg" href="https://us02web.zoom.us/j/82644407649?pwd=Yk42ZURJbUFLeFpnKzY0ZVdSVGJxZz09">
-                    Click aqui para Ingresar a la asamblea
-                </a>
             </h4>
         </div>
 
@@ -61,6 +66,7 @@
 
 <script>
     "use strict"
+    let votationRender = [];
 
     $(".votar").submit(e => {
         e.preventDefault()
@@ -69,47 +75,52 @@
 
     $(document).ready(function () {
         const codcliente = $("#codcliente").val()
-        let flgrefresh=1;
-        setInterval(function(){
+        let flgrefresh = 1;
+        setInterval(function () {
             $.ajax({
                 url: `${URL_API}/asociados/votaciones/${codcliente}`,
                 method: "get",
                 timeout: 0
             }).then(res => {
-                console.log(res)
                 const {data} = res;
-                console.log("conteo",data.length)
+                const Votes = data;
 
-                if (data.length > 0){
+                console.log("conteo", data.length)
 
+                if (data.length > 0) {
+                    console.log('mayor a cero')
+                    if (!votationRender.find(val => val.CodVotacion === data.CodVotacion)) {
+                        votationRender.push({CodVotacion: data.CodVotacion})
+                        $.ajax({
+                            url: `${URL_API}/asociados/opciones`,
+                            method: 'GET',
+                            timeout: 0
+                        }).then(options => {
+                            const AllOps = options.data;
+                            const VotesAvailable = Votes.filter(va => va.CodEstado === 'E')
+                            VotesAvailable.forEach(function (vote) {
+                                const optsbyvotes = AllOps.filter(opts => opts.CodVotacion === vote.CodVotacion);
+                                let htmlTemplate = templateVotation(vote, optsbyvotes);
+
+                                $("#desk").append(htmlTemplate)
+                            })
+                        })
+                    }
+                } else {
+                    $("#desk").empty();
                 }
-
-
             });
         }, 2000)
 
-        $.ajax({
-            url: `${URL_API}/asociados/votaciones/${codcliente}`,
-            method: 'GET',
-            timeout: 0
-        }).then(response => {
-            const Votes = response.data;
-
-            $.ajax({
-                url: `${URL_API}/asociados/opciones`,
-                method: 'GET',
-                timeout: 0
-            }).then(options => {
-                const AllOps = options.data;
-                const VotesAvailable = Votes.filter(va => va.CodEstado === 'E')
-                VotesAvailable.forEach(function (vote) {
-                    const optsbyvotes = AllOps.filter(opts => opts.CodVotacion === vote.CodVotacion);
-                    let htmlTemplate = templateVotation(vote, optsbyvotes);
-
-                    $("#desk").append(htmlTemplate)
-                })
-            })
-        })
+        // $.ajax({
+        //     url: `${URL_API}/asociados/votaciones/${codcliente}`,
+        //     method: 'GET',
+        //     timeout: 0
+        // }).then(response => {
+        //
+        //
+        //
+        // })
 
     })
 
@@ -192,7 +203,7 @@ onclick="EmitirVoto('${Info.CodVotacion}', '${Info.CodOpcion}', '${Info.StrDescr
                         $.ajax({
                             url: 'http://servicio.smsmasivos.com.ar/enviar_sms_bloque.asp',
                             method: 'POST',
-                            timeout:0,
+                            timeout: 0,
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },

@@ -9,11 +9,12 @@ passport.use('local.signin', new passportLocal({
     passReqToCallback: true
 }, async (request, username, password, done) => {
 
+
     const URL = `${config.URL_API}/asociados/login`
 
     await axios.get(URL, {
         data: {
-            cui: username,
+            cui: username.replace(' ', '').replace(' ',''),
             cuenta: password
         }
     }).then(function (response) {
@@ -25,7 +26,7 @@ passport.use('local.signin', new passportLocal({
 
         return done(null, data)
     }).catch(function (error) {
-        console.log("error", error)
+
         return done(null, null);
     })
 }));

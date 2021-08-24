@@ -84,7 +84,7 @@
                 </div>
                 <div class="div">
                     <h5>DPI</h5>
-                    <input type="number" class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
+                    <input type="text" class="absolute w-full h-full py-2 px-3 outline-none inset-0 text-gray-700"
                            name="username"
                            autocomplete="off"
                            style="background: none;"
@@ -162,7 +162,7 @@
             days: '00',
             distance: 0,
             countdown: null,
-            beerTime: new Date('Aug 17, 2021 10:16:00').getTime(),
+            beerTime: new Date('Aug 19, 2021 21:42:00').getTime(),
             now: new Date().getTime(),
             start: function() {
                 this.countdown = setInterval(() => {
@@ -201,7 +201,7 @@
     const inputs = document.querySelectorAll("input");
 
     const username = document.getElementsByName('username')[0];
-    const maskUsername = IMask(username, {mask: '0000000000000'})
+    const maskUsername = IMask(username, {mask: '0000 00000 0000'})
 
     const password = document.getElementsByName('password')[0];
     const maskPassword = IMask(password, {mask: '0000000000'})
