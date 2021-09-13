@@ -49,3 +49,8 @@ export const resultado = (request, response) => {
     options.path = request.route.path
     response.render('./administrador/resultados', options)
 }
+
+export const configuracion = (request, response) => {
+    options.path = request.route.path
+    response.render('./administrador/configuracion', options)
+}

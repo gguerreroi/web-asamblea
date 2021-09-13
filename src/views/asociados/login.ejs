@@ -113,7 +113,7 @@
         </form>
     </div>
 
-    <div class="bg-white h-60 flex items-center justify-center px-5 py-5" x-data="beer()" x-init="start()" id="countdown">
+    <div class="rounded-lg bg-white h-60 flex items-center justify-center px-5 py-5" x-data="beer()" x-init="start()" id="countdown">
 
         <div class="text-blue-900">
             <div class="flex justify-center w-full ">
@@ -143,9 +143,14 @@
                     <div class="font-mono uppercase text-sm leading-none">Segundos</div>
                 </div>
             </div>
+            <div class="flex items-center">
+                <button class="modal-open w-full focus:outline-none m-6 rounded-lg text-3xl text-center mb-3 font-extralight p-2 text-blue-900 hover:bg-green-200  "> Registrar mi asistencia </button>
+            </div>
         </div>
     </div>
 </div>
+<%- include('modalRegistrar.ejs'); -%>
+
 <%- include('../partials/common.ejs'); -%>
 <script
         src="https://code.jquery.com/jquery-3.6.0.js"
@@ -162,7 +167,7 @@
             days: '00',
             distance: 0,
             countdown: null,
-            beerTime: new Date('Aug 24, 2021 14:00:00').getTime(),
+            beerTime: new Date('Sep 24, 2021 14:00:00').getTime(),
             now: new Date().getTime(),
             start: function() {
                 this.countdown = setInterval(() => {
@@ -223,7 +228,43 @@
         input.addEventListener("blur", remcl);
     });
 
+    var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener('click', function(event){
+            event.preventDefault()
+            toggleModal()
+        })
+    }
 
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener('click', toggleModal)
+    }
+
+    document.onkeydown = function(evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+            isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-active')) {
+            toggleModal()
+        }
+    };
+
+
+    function toggleModal () {
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modal')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
+    }
 
 </script>
 </body>

@@ -18,7 +18,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 //Configuraciones
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 80);
 app.set('view engine', 'ejs');
 app.set('views', join(__dirname, '/views'));
 

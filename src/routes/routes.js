@@ -23,5 +23,6 @@ r.get('/admin/votaciones', check.isAuthAdmin, admin.votaciones)
 r.get('/admin/asistencia', check.isAuthAdmin, admin.asistencia)
 r.get('/admin/sexo', check.isAuthAdmin, admin.sexo)
 r.get('/admin/resultado', check.isAuthAdmin, admin.resultado)
+r.get('/admin/configuracion', check.isAuthAdmin, admin.configuracion)
 
 export default r
